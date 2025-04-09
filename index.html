@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fourses.com - Your AI-Powered Travel Companion</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@500;600;700&display=swap">
+    <style>
+        :root {
+            --primary: #F7CA18;
+            --background: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #555555;
+            --accent: #FFD700;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--background);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: #1A1A1A;
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: white;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        .hero {
+            background-color: #1A1A1A;
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--background));
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero h1 span {
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .services {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-image {
+            height: 200px;
+            background-color: #f5f5f5;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        .service-content p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .service-link:hover {
+            color: var(--primary);
+        }
+        
+        .ai-chatbot {
+            background-color: #f9f9f9;
+            padding: 80px 0;
+        }
+        
+        .chatbot-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .chatbot-image {
+            background-color: #eee;
+            height: 400px;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .chatbot-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .chatbot-content p {
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+        }
+        
+        .features {
+            padding: 80px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(247, 202, 24, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .feature-item h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .cta {
+            background-color: #1A1A1A;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        footer {
+            background-color: #1A1A1A;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .chatbot-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .chatbot-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Fourses<span>.com</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#flights">Flights</a></li>
+                    <li><a href="#hotels">Hotels</a></li>
+                    <li><a href="#trains">Trains</a></li>
+                    <li><a href="#cabs">Cabs</a></li>
+                    <li><a href="#buses">Buses</a></li>
+                    <li><a href="#logistics">Logistics</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Your AI-Powered <span>Travel Companion</span></h1>
+                <p>Discover seamless travel planning with our intelligent booking platform for flights, hotels, trains, cabs, buses, and logistics services.</p>
+                <a href="#services" class="btn">Explore Services</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Travel Services</h2>
+                <p>Comprehensive travel solutions designed to make your journey smooth and enjoyable.</p>
+            </div>
+
+            <div class="services-grid">
+                <div id="flights" class="service-card">
+                    <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1503146234398-d71f6a914cd4');"></div>
+                    <div class="service-content">
+                        <h3>Flight Bookings</h3>
+                        <p>Find the best deals on domestic and international flights with our easy booking system.</p>
+                        <a href="#" class="service-link">Book a Flight →</a>
+                    </div>
+                </div>
+
+                <div id="hotels" class="service-card">
+                    <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb');"></div>
+                    <div class="service-content">
+                        <h3>Hotel Reservations</h3>
+                        <p>From luxury resorts to budget-friendly options, find the perfect stay for your journey.</p>
+                        <a href="#" class="service-link">Find Hotels →</a>
+                    </div>
+                </div>
+
+                <div id="trains" class="service-card">
+                    <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1474487548417-781cb71495f3');"></div>
+                    <div class="service-content">
+                        <h3>Train Tickets</h3>
+                        <p>Book train tickets for comfortable and scenic journeys between major cities.</p>
+                        <a href="#" class="service-link">Reserve Trains →</a>
+                    </div>
+                </div>
+
+                <div id="cabs" class="service-card">
+                    <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2');"></div>
+                    <div class="service-content">
+                        <h3>Cab Services</h3>
+                        <p>Book safe and comfortable rides with our trusted cab partners.</p>
+                        <a href="#" class="service-link">Book a Cab →</a>
+                    </div>
+                </div>
+
+                <div id="buses" class="service-card">
+                    <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1569254787280-28caddb28a97');"></div>
+                    <div class="service-content">
+                        <h3>Bus Bookings</h3>
+                        <p>Affordable and comfortable bus transportation for your journey.</p>
+                        <a href="#" class="service-link">Find Buses →</a>
+                    </div>
+                </div>
+
+                <div id="logistics" class="service-card">
+                    <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d');"></div>
+                    <div class="service-content">
+                        <h3>Logistics Solutions</h3>
+                        <p>Reliable package and document delivery services for all your needs.</p>
+                        <a href="#" class="service-link">Ship Packages →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ai-chatbot">
+        <div class="container">
+            <div class="chatbot-container">
+                <div class="chatbot-image" style="background-image: url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b');"></div>
+                <div class="chatbot-content">
+                    <h2>AI Travel Assistant</h2>
+                    <p>Meet your personal AI travel companion. Our intelligent chatbot is here to answer your travel questions, suggest destinations, and help you plan your perfect trip.</p>
+                    <p>From recommending the best time to visit a destination to helping you find the cheapest flights, our AI assistant is available 24/7 to make your travel planning easier and more efficient.</p>
+                    <a href="#" class="btn">Chat with AI Assistant</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Fourses.com</h2>
+                <p>Experience the advantages of our comprehensive travel platform.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#F7CA18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3>24/7 Service</h3>
+                    <p>Round-the-clock support and booking services whenever you need them.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#F7CA18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <h3>All-in-One Platform</h3>
+                    <p>Manage all your travel needs in one convenient place.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#F7CA18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </div>
+                    <h3>Personalized Experience</h3>
+                    <p>Travel recommendations tailored to your preferences and history.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#F7CA18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Best Price Guarantee</h3>
+                    <p>We ensure you get the most competitive rates for all services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="cta">
+        <div class="container">
+            <h2>Plan Your Journey with Fourses.com</h2>
+            <p>Join thousands of satisfied travelers who use our platform for seamless travel planning and booking.</p>
+            <a href="#" class="btn">Get Started Now</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Fourses.com</h3>
+                    <p style="color: rgba(255, 255, 255, 0.6); margin-bottom: 20px;">Your AI-powered travel companion for seamless journey planning.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#flights">Flight Bookings</a></li>
+                        <li><a href="#hotels">Hotel Reservations</a></li>
+                        <li><a href="#trains">Train Tickets</a></li>
+                        <li><a href="#cabs">Cab Services</a></li>
+                        <li><a href="#buses">Bus Bookings</a></li>
+                        <li><a href="#logistics">Logistics Solutions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Partners</a></li>
+                    </ul>
+                </div>
+
+                <div id="contact" class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li style="color: rgba(255, 255, 255, 0.6);">123 Travel Street</li>
+                        <li style="color: rgba(255, 255, 255, 0.6);">Global City, 10001</li>
+                        <li style="color: rgba(255, 255, 255, 0.6);">info@fourses.com</li>
+                        <li style="color: rgba(255, 255, 255, 0.6);">+1 (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Fourses.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
